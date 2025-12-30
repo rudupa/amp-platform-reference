@@ -128,6 +128,9 @@ int amp_mailbox_try_recv(amp_mailbox_t mbox, void *msg)
  */
 int amp_mailbox_send(amp_mailbox_t mbox, const void *msg, uint32_t timeout_ms)
 {
+    /* Simple busy-wait timeout (Phase 1 limitation)
+     * Production implementations should use hardware timers
+     */
     uint32_t count = timeout_ms * 1000;
     
     while (amp_mailbox_try_send(mbox, msg) != 0) {
@@ -144,6 +147,9 @@ int amp_mailbox_send(amp_mailbox_t mbox, const void *msg, uint32_t timeout_ms)
  */
 int amp_mailbox_recv(amp_mailbox_t mbox, void *msg, uint32_t timeout_ms)
 {
+    /* Simple busy-wait timeout (Phase 1 limitation)
+     * Production implementations should use hardware timers
+     */
     uint32_t count = timeout_ms * 1000;
     
     while (amp_mailbox_try_recv(mbox, msg) != 0) {

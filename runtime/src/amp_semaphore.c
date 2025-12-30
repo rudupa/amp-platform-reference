@@ -20,20 +20,22 @@ static inline bool atomic_cas(volatile uint32_t *ptr, uint32_t old_val, uint32_t
 {
 #if defined(__ARM_ARCH) || defined(__arm__)
     uint32_t result;
+    uint32_t tmp;
     
     __asm__ volatile(
-        "1: ldrex %0, [%1]\n"
-        "   cmp %0, %2\n"
+        "1: ldrex %0, [%2]\n"
+        "   cmp %0, %3\n"
         "   bne 2f\n"
-        "   strex %0, %3, [%1]\n"
-        "   cmp %0, #0\n"
+        "   strex %1, %4, [%2]\n"
+        "   cmp %1, #0\n"
         "   bne 1b\n"
         "2: dmb\n"
-        : "=&r"(result)
+        : "=&r"(result), "=&r"(tmp)
         : "r"(ptr), "r"(old_val), "r"(new_val)
         : "cc", "memory"
     );
     
+    /* CAS succeeded if we read old_val and STREX succeeded (tmp == 0) */
     return (result == old_val);
 #else
     /* Use GCC built-in atomic compare-and-swap for non-ARM platforms */
@@ -96,6 +98,9 @@ int amp_semaphore_try_wait(amp_semaphore_t sem)
  */
 int amp_semaphore_wait(amp_semaphore_t sem, uint32_t timeout_ms)
 {
+    /* Simple busy-wait timeout (Phase 1 limitation)
+     * Production implementations should use hardware timers
+     */
     uint32_t count = timeout_ms * 1000;
     
     while (amp_semaphore_try_wait(sem) != 0) {

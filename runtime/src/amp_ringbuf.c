@@ -63,7 +63,8 @@ size_t amp_ringbuf_available(amp_ringbuf_t rb)
     uint32_t write_idx = rb->write_idx;
     uint32_t read_idx = rb->read_idx;
     
-    return write_idx - read_idx;
+    /* Unsigned subtraction handles wraparound correctly */
+    return (size_t)(write_idx - read_idx);
 }
 
 /**

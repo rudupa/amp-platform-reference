@@ -64,7 +64,10 @@ amp_boot_status_t amp_boot_wait_core_ready(amp_core_t core_id, uint32_t timeout_
 
     uint32_t mask = (1 << core_id);
     
-    /* Simple timeout implementation */
+    /* Simple busy-wait timeout implementation
+     * NOTE: This is inaccurate and platform-dependent (Phase 1 limitation)
+     * Production implementations should use hardware timers
+     */
     uint32_t count = timeout_ms * 1000; /* Approximate */
     while (!(core_ready_flags & mask)) {
         if (timeout_ms > 0 && --count == 0) {
