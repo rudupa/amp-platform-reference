@@ -1,18 +1,9 @@
 # amp-platform-reference
 Vendor‑neutral AMP reference implementation for dual‑core MCUs — deterministic boot, domain config, minimal IPC, and reproducible examples (Phase 1).
 
-### What Already Exists (Phase 1 - Main Branch)
-The main branch contains a complete Phase 1 implementation:
-- ✅ Core boot and handoff (`amp_boot`)
-- ✅ Shared memory ring buffer (`amp_ringbuf`)
-- ✅ Mailbox IPC (`amp_mailbox`)
-- ✅ Semaphores (`amp_semaphore`)
-- ✅ Three working examples (hello-amp, pingpong, shared-counter)
-
-See [TASK_INDEX.md](./TASK_INDEX.md) for full details on what exists vs. what these tasks add.
 # AMP MCU Reference Implementation
 
-Vendor-neutral Asymmetric Multiprocessing (AMP) reference implementation for multi-core MCUs, SoCs, HPCs, etc — featuring deterministic boot, domain configuration, minimal IPC primitives, and reproducible examples.
+Vendor-neutral Asymmetric Multiprocessing (AMP) reference implementation for dual-core MCUs — featuring deterministic boot, domain configuration, minimal IPC primitives, and reproducible examples.
 
 **Phase 1** - Foundation release with core functionality.
 
