@@ -59,8 +59,8 @@ Optional:
 
 ```bash
 # Clone repository
-git clone https://github.com/rudupa/amp-mcu-reference.git
-cd amp-mcu-reference
+git clone https://github.com/rudupa/amp-platform-reference.git
+cd amp-platform-reference
 
 # Configure with CMake
 cmake -B build -DAMP_PLATFORM=generic
@@ -133,7 +133,7 @@ amp_boot_signal_ready();                // Signal core ready
 ## Architecture
 
 ```
-amp-mcu-reference/
+amp-platform-reference/
 ├── runtime/              # Core AMP runtime library
 │   ├── include/          # Public API headers
 │   │   ├── amp_boot.h
@@ -313,8 +313,8 @@ Contributions are welcome! Please:
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/rudupa/amp-mcu-reference/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/rudupa/amp-mcu-reference/discussions)
+- **Issues**: [GitHub Issues](https://github.com/rudupa/amp-platform-reference/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/rudupa/amp-platform-reference/discussions)
 
 ## Acknowledgments
 
